@@ -124,7 +124,6 @@ setup(
             'django-mock-queries',
             'sphinx_rtd_theme',
             'factory-boy==2.8.1',
-
         ]
     },
 

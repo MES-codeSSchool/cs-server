@@ -68,6 +68,7 @@ setup(
         'json-rpc',
         'editdistance',
         'placeholder',
+				'pandas',
 
         # Services
         'invoke',
@@ -81,7 +82,6 @@ setup(
         'django-model-reference',
         'django-picklefield',
         'django-jsonfield',
-        'django-userena', 'django-guardian>=1.4.6',
         'django-ipware',
         'django-annoying',
         'django-extensions',
@@ -123,6 +123,8 @@ setup(
             'sulfur>=0.1.3',
             'django-mock-queries',
             'sphinx_rtd_theme',
+						'factory-boy==2.8.1',
+
         ]
     },
 

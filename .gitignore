@@ -58,3 +58,7 @@ src/__init__.py
 
 # VSCode setings folder
 .vscode
+
+# Editor files
+*.swp
+.DS_Store

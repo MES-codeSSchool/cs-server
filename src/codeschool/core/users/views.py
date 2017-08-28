@@ -14,7 +14,6 @@ from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from .permissions import IsAdminOrSelf
-from .viewsets import *
 authentication_backend = get_config('AUTHENTICATION_BACKENDS')[-1]
 
 
@@ -37,8 +36,13 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrSelf,)
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
+<<<<<<< HEAD
 
     @detail_route(methods=['post'],permission_classes=[IsAdminOrSelf])
+=======
+    permission_classes= (IsAdminOrSelf,)
+    @detail_route(methods=['post'])
+>>>>>>> Add permission level in API profile info visualization
     def set_profile(self, request, pk=None):
         profile = self.get_object()
         serializer = serializers.ProfileSerializer(data=request.data)

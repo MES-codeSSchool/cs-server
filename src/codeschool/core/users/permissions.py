@@ -1,16 +1,14 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import IsAdminUser
 
-# https://github.com/HazyResearch/elementary/blob/master/django/resources/views.py
 
-class IsAdminOrSelf(BasePermission):
-    def has_permission(self, request, view):
-        if not request.user or not request.user.is_authenticated():
-            return False
-        if not request.user.is_staff:
-            return request.method in ['GET', 'HEAD', 'OPTIONS', 'PUT']
-        return True
-
+class IsAdminOrSelf(IsAdminUser):
+    """
+    Allow access to admin users or the user himself.
+    """
     def has_object_permission(self, request, view, obj):
-        if request.user.is_staff:
+        if request.user and request.user.is_staff:
             return True
-        return request.user == obj
+        elif (request.user and type(obj) == type(request.user) and
+              obj == request.user):
+            return True
+        return False

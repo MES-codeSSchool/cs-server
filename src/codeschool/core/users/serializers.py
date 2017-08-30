@@ -61,10 +61,10 @@ class UserDetailSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         password_confirmation = validated_data.pop('password_confirmation', None)
         if(password_confirmation == validated_data['password']):
+            validated_data['password'] = make_password(validated_data['password'])
             return super(UserSerializer, self).create(validated_data)
         else:
             raise Exception()
-
 
 class FullUserSerializer(serializers.ModelSerializer):
     """

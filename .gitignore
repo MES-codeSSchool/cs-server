@@ -49,6 +49,7 @@ security/
 # A pycharm bug keeps re-creating this file!
 src/__init__.py
 
+<<<<<<< HEAD
 # Editor files
 *.swp
 .DS_Store

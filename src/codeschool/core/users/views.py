@@ -36,13 +36,11 @@ class UserViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAdminOrSelf,)
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
-<<<<<<< HEAD
 
     @detail_route(methods=['post'],permission_classes=[IsAdminOrSelf])
-=======
-    permission_classes= (IsAdminOrSelf,)
+    permission_classes = (IsAdminOrSelf,)
+
     @detail_route(methods=['post'])
->>>>>>> Add permission level in API profile info visualization
     def set_profile(self, request, pk=None):
         profile = self.get_object()
         serializer = serializers.ProfileSerializer(data=request.data)

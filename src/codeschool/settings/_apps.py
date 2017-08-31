@@ -55,11 +55,7 @@ INSTALLED_APPS = [
     'wagtail.wagtailadmin',
     'wagtail.wagtailcore',
     'modelcluster',
-    'taggit',
-
-    # Userena
-    'guardian',
-    'easy_thumbnails',
+    'taggit',    
 
     # Other 3rd party
     'friendship',

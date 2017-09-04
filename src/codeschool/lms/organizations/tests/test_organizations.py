@@ -11,7 +11,7 @@ class TestDiscipline:
         name = "Universidade de Brasilia - Campus Gama"
         description = "Terra, Lama e Poeira"
         return DescriptiveModel(slug=slug,name=name,
-                                               description=description)
+                                description=description)
 
     def create_organization(self):
         organization = self.create_descriptive_model()
@@ -30,3 +30,6 @@ class TestDiscipline:
 
     def test_create_discipline(self):
         discipline = self.create_discipline()
+
+    def test_create_organization(self):
+        organization = self.create_organization()

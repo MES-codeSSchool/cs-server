@@ -2,6 +2,10 @@ import pytest
 
 from codeschool.lms.activity_lists.score_map import \
     ScoreMap, ScoreTable, ScoreTableMapCommon
+from codeschool import models
+from codeschool.lms.activity_lists.models import ActivityList
+from django.test import TestCase, RequestFactory
+
 
 ScoreTableMapCommon._translate = lambda self, x: str(x)
 
@@ -94,3 +98,27 @@ def test_score_table_columns(score_map, score_map2, score_table):
     assert str(c1) == str(score_map)
     assert c1 == score_map
     assert c2 == score_map2
+
+class TestActivityList:
+
+    @pytest.mark.django_db
+    def create_activity_list(self):
+        name = "Lista1"
+        slug = "FGA"
+        short_description = "Pequena discrição"
+        long_description = "Grande e longa discrição"
+        icon = "Icon1"
+
+        assert ActivityList(name=name, slug=slug, short_description=short_description,
+                            long_description=long_description, icon=icon) is not None
+
+    def test_create_activity_list(self):
+        activity_lists = self.create_activity_list()
+
+
+@pytest.fixture
+def test_socore_board_total(self):
+    board = "null"
+    score = 0
+
+    assert ActivityList.score_board_total(self) is True

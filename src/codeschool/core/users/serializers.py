@@ -8,7 +8,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serialize user profiles
     """
-
     # TODO: hyperlinks as sub-resource under each user
     # TODO: add extra user fields?
     # TODO: nullify fields that user is not allowed to see? (this may be
@@ -32,11 +31,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
     """
 
     role = serializers.SerializerMethodField()
-    password_confirmation = serializers.CharField(write_only=True)
+    #password_confirmation = serializers.CharField(write_only=True)
+    profile = ProfileSerializer()
 
     class Meta:
         model = models.User
-        fields = ('url', 'alias', 'role','email', 'name', 'school_id', 'password', 'password_confirmation')
+        fields = ('username', 'alias', 'role','email', 'name', 'school_id', 'password', 'profile')
         write_only = {'write_only': True}
         extra_kwargs = {
                 'email': write_only,
@@ -44,7 +44,8 @@ class UserDetailSerializer(serializers.ModelSerializer):
                 'name': write_only,
                 'school_id': write_only,
                 'password': write_only,
-                'password_confirmation': write_only
+                #'profile':write_only,
+                #'password_confirmation': write_only
         }
         #write_only_fields = ('email', 'name', 'school_id', 'role', 'password', 'password_validation')
 
@@ -59,12 +60,40 @@ class UserDetailSerializer(serializers.ModelSerializer):
             return 'admin'
 
     def create(self, validated_data):
+        profile_data = validated_data.pop('profile',None)
+        user = models.User.objects.create(**validated_data)
+        models.Profile.create(user=user, **profile_data)
+        return user
+
+
+    '''def update(self, instance, validated_data):
+
+        #,'website','about_me', 'visibility'
+        profile_data = validated_data.pop('profile')
+        profile = instance.profile
+        instance.email = validated_data.get('email',instance.email)
+        instance.role = validated_data.get('role',instance.role)
+        instance.name = validated_data.get('name',instance.name)
+        #profile = instance.profile
+        #instance.gender = validated_data.get('gender', instance.gender)
+        #instance.phone = validated_data.get('phone', instance.phone)
+        #instance.date_of_birth = validated_data('date_of_birth',instance.date_of_birth)
+        instance.save()
+        profile.save()
+        #profile.save()
+
+        return instance'''
+
+
+
+    '''def create(self, validated_data):
         password_confirmation = validated_data.pop('password_confirmation', None)
         if(password_confirmation == validated_data['password']):
             validated_data['password'] = make_password(validated_data['password'])
             return super(UserSerializer, self).create(validated_data)
         else:
-            raise Exception()
+            raise Exception()'''
+
 
 class FullUserSerializer(serializers.ModelSerializer):
     """

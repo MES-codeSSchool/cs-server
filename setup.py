@@ -68,7 +68,7 @@ setup(
         'json-rpc',
         'editdistance',
         'placeholder',
-				'pandas',
+        'pandas',
 
         # Services
         'invoke',
@@ -125,8 +125,7 @@ setup(
             'sulfur>=0.1.3',
             'django-mock-queries',
             'sphinx_rtd_theme',
-						'factory-boy==2.8.1',
-
+            'factory-boy==2.8.1',
         ]
     },
 

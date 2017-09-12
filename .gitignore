@@ -44,9 +44,17 @@ src/codeschool/core/users/migrations/*
 
 # Private and local information
 local/*
+security/
 
 # A pycharm bug keeps re-creating this file!
 src/__init__.py
+
+# Editor files
+*.swp
+.DS_Store
+
+# VSCode setings folder
+.vscode
 
 # Editor files
 *.swp

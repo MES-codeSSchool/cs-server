@@ -68,7 +68,7 @@ setup(
         'json-rpc',
         'editdistance',
         'placeholder',
-				'pandas',
+        'pandas',
 
         # Services
         'invoke',
@@ -92,6 +92,8 @@ setup(
         'rules',
         'djangorestframework',
         'werkzeug',
+        'djangorestframework-jwt',
+        'django-cors-headers',
 
         # Wagtail
         'wagtail~=1.10',
@@ -123,7 +125,7 @@ setup(
             'sulfur>=0.1.3',
             'django-mock-queries',
             'sphinx_rtd_theme',
-
+            'factory-boy==2.8.1',
         ]
     },
 

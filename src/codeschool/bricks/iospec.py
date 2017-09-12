@@ -11,7 +11,6 @@ from iospec import In
 
 EMPTY = _('empty')
 
-
 @with_class('iospec')
 def iospec_to_html(iospec, **kwargs):
     """

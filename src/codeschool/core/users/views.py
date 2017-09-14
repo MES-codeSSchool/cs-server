@@ -13,7 +13,7 @@ from .forms import LoginForm, UserForm, ProfileForm
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
-from .permissions import IsAdminOrSelf
+from .permissions import IsAdminOrSelf, UserPermissions
 authentication_backend = get_config('AUTHENTICATION_BACKENDS')[-1]
 
 

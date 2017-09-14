@@ -61,7 +61,8 @@ setup(
         'html5lib==0.999999999',
         'bleach==2.0.0',
         'fake-factory<=0.7.2', # => Faker?
-        'factory-boy',
+        'model_mommy==1.3.2',
+        'factory-boy==2.8.1',
         'mommys_boy',
         'celery[redis]',
         'PyYAML',
@@ -125,7 +126,7 @@ setup(
             'sulfur>=0.1.3',
             'django-mock-queries',
             'sphinx_rtd_theme',
-            'factory-boy==2.8.1',
+
         ]
     },
 

@@ -62,6 +62,7 @@ setup(
         'bleach==2.0.0',
         'fake-factory<=0.7.2', # => Faker?
         'factory-boy',
+        'model_mommy==1.3.2',
         'mommys_boy',
         'celery[redis]',
         'PyYAML',

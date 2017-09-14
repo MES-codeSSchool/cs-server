@@ -8,7 +8,6 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serialize user profiles
     """
-
     # TODO: hyperlinks as sub-resource under each user
     # TODO: add extra user fields?
     # TODO: nullify fields that user is not allowed to see? (this may be

@@ -57,10 +57,6 @@ INSTALLED_APPS = [
     'modelcluster',
     'taggit',
 
-    # Userena
-    'guardian',
-    'easy_thumbnails',
-
     # Other 3rd party
     'friendship',
     'polymorphic',

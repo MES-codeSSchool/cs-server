@@ -6,13 +6,14 @@ from django.db import transaction
 from django.shortcuts import redirect, render
 from django.utils.translation import ugettext as _
 from rest_framework import viewsets
-
 from . import bricks
 from . import models
 from . import serializers
 from .forms import LoginForm, UserForm, ProfileForm
 from rest_framework.decorators import detail_route, list_route
 from rest_framework.response import Response
+from rest_framework.permissions import IsAdminUser
+from .permissions import UserPermissions
 
 authentication_backend = get_config('AUTHENTICATION_BACKENDS')[-1]
 
@@ -20,13 +21,20 @@ authentication_backend = get_config('AUTHENTICATION_BACKENDS')[-1]
 #
 # REST endpoints
 #
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    permission_classes = (UserPermissions,)
+    method = 'put'
+    queryset = models.Profile.objects.all()
+    serializer_class = serializers.ProfileSerializer
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     Active users in the Codeschool platform.
     """
-
     queryset = models.User.objects.all()
     serializer_class = serializers.UserSerializer
+    permission_classes = (UserPermissions,)
 
     @detail_route(methods=['post'])
     def set_profile(self, request, pk=None):
@@ -39,6 +47,7 @@ class UserViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer.errors,
                             status=status.HTTP_400_BAD_REQUEST)
+
 
 
 #
@@ -170,3 +179,5 @@ def login_context():
         user_form=UserForm(),
         profile_form=ProfileForm(),
     )
+def profile_view(request, username):
+    u = models.User.objects.get(username=username)

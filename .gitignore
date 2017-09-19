@@ -48,6 +48,11 @@ local/*
 # A pycharm bug keeps re-creating this file!
 src/__init__.py
 
+
 # Editor files
 *.swp
 .DS_Store
+
+# VSCode setings folder
+.vscode
+

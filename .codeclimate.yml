@@ -21,7 +21,7 @@ engines:
   csslint:
     enabled: true
   eslint:
-    enabled: true
+    enabled: false
 ratings:
   paths:
   - "src/codeschool/**.py"

@@ -9,7 +9,7 @@ class FieldSerializer(serializers.HyperlinkedModelSerializer):
     """
 
     class Meta:
-        model = models.Fields
+        model = models.Field
         fields = (
                 'name', 'type_field', 'description',
         )

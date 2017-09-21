@@ -8,5 +8,5 @@ class FieldViewSet(viewsets.ModelViewSet):
     List of Fields.
     """
 
-    queryset = models.Fields.objects.all()
+    queryset = models.Field.objects.all()
     serializer_class = serializers.FieldSerializer

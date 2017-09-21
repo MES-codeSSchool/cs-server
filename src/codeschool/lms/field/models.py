@@ -26,7 +26,7 @@ class FieldModel(models.Model):
     class Meta:
         abstract = True
 
-class Fields(FieldModel):
+class Field(FieldModel):
     """
-    eaeae
+
     """

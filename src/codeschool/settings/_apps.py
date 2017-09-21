@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'codeschool.lms.activity_lists.apps.ActivityListsConfig',
     'codeschool.lms.classrooms.apps.ClassroomsConfig',
     'codeschool.lms.organizations.apps.OrganizationsConfig',
+    'codeschool.lms.field.apps.FieldConfig',
 
     # Gamification platform
     # 'codeschool.gamification.points',

@@ -1,34 +1,14 @@
-from django.utils.translation import ugettext_lazy as _
-
 from codeschool import models
+from codeschool.lms.field.models import Field
+from codeschool.core.users.models import User
 
-class FiledValueModel(models.Model):
-
-    # Field created in class FieldModel
-    fields = models.ManyToManyField(
-        models.Field,
-        verbose_name=_('fields'),
-        blank=True,
-    )
+class FiledValue(models.Model):
 
     content = models.CharField(
         max_length = 200,
-        help_text =_(
-            'Content'
-        ),
     )
 
-    user = model.ManyToManyField(
-        models.User,
-        verbose_name=_('user'),
-        related_name='classrooms_as_student',
-        blank=True,
-    )
+    # Field created in class FieldModel
+    fields = models.ManyToManyField(Field)
 
-    class Meta:
-        abstract = True
-
-class FieldValue(FiledValueModel):
-    """
-    Class for Field Value
-    """
+    user = models.ManyToManyField(User)

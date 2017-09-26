@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from codeschool import models
 
 
-class FieldModel(models.Model):
+class Field(models.Model):
     """
     One dinamic field used in user forms.
     """
@@ -22,11 +22,3 @@ class FieldModel(models.Model):
     description = models.CharField(
         max_length = 200
     )
-
-    class Meta:
-        abstract = True
-
-class Field(FieldModel):
-    """
-
-    """

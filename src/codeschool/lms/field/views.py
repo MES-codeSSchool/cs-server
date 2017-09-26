@@ -1,12 +1,12 @@
 from rest_framework import viewsets
 
 from . import serializers
-from . import models
+from .models import Field
 
 class FieldViewSet(viewsets.ModelViewSet):
     """
     List of Fields.
     """
 
-    queryset = models.Field.objects.all()
+    queryset = Field.objects.all()
     serializer_class = serializers.FieldSerializer

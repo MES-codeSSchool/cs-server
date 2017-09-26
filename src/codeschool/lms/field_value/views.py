@@ -10,5 +10,5 @@ class FieldValueViewSet(formView):
     """
     form = FieldValueForm()
     return render(request, 'field_value.html', {'form': form})
-    # queryset = models.FieldValue.objects.all()
-    # serializer_class = serializers.FieldValueSerializer
+    queryset = FieldValue.objects.all()
+    serializer_class = serializers.FieldValueSerializer

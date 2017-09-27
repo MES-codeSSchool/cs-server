@@ -1,7 +1,6 @@
 import pytest
 
 from codeschool.lms.field.models import Field
-from codeschool.lms.field.models import FieldModel
 
 class TestField:
 
@@ -10,7 +9,7 @@ class TestField:
         type_field = "String"
         description = "Insira aqui seu GitHub"
 
-        return FieldModel(name=name, type_field=type_field,
+        return Field(name=name, type_field=type_field,
                           description=description)
 
 

@@ -10,5 +10,6 @@ class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.FieldValue
         fields = (
-                'content', 'fields', 'user',
+        # Need to add user.
+                'content', 'fields',
         )

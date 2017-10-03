@@ -2,7 +2,7 @@ from codeschool import models
 from codeschool.lms.field.models import Field
 from codeschool.core.users.models import User
 
-class FiledValue(models.Model):
+class FieldValue(models.Model):
 
     content = models.CharField(
         max_length = 200,

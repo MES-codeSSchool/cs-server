@@ -1,14 +1,12 @@
 from rest_framework import viewsets
 
 from . import serializers
-from . import models
-from .forms import FieldValueForm
+from .models import FieldValue
 
-class FieldValueViewSet(formView):
+class FieldValueViewSet(viewsets.ModelViewSet):
     """
     List of Field Values
     """
-    form = FieldValueForm()
-    return render(request, 'field_value.html', {'form': form})
+
     queryset = FieldValue.objects.all()
     serializer_class = serializers.FieldValueSerializer

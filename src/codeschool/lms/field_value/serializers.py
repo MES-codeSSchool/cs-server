@@ -6,9 +6,9 @@ class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serialize Field Value objects.
     """
-    pass
-    # class Meta:
-    #     model = models.FieldValue
-    #     fields = (
-    #             'fields', 'content', 'user',
-    #     )
+
+    class Meta:
+        model = models.FieldValue
+        fields = (
+                'content', 'fields', 'user',
+        )

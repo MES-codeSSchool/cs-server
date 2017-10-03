@@ -27,7 +27,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         }
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serialize User objects.
     """

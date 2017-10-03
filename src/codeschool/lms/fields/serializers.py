@@ -2,6 +2,18 @@ from rest_framework import serializers
 
 from . import models
 
+
+class FieldSerializer(serializers.HyperlinkedModelSerializer):
+    """
+    Serialize Field objects.
+    """
+
+    class Meta:
+        model = models.Field
+        fields = (
+                'name', 'field_type', 'description',
+        )
+
 class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
     """
     Serialize Field Value objects.
@@ -11,5 +23,5 @@ class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
         model = models.FieldValue
         fields = (
         # Need to add user.
-                'content', 'fields',
+                'content', 'field', 'user'
         )

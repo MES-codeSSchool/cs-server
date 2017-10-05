@@ -22,6 +22,5 @@ class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.FieldValue
         fields = (
-        # Need to add user.
                 'content', 'field', 'user'
         )

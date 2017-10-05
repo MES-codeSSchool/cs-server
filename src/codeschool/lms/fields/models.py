@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from codeschool import models
 from django.core.exceptions import ValidationError
-from django.core.validators import URLValidator
+# import Field.validators as validators
 
 class Field(models.Model):
     """
@@ -44,23 +44,8 @@ class FieldValue(models.Model):
     user = models.ForeignKey('users.User')
     content = models.CharField(
         max_length = 200,
+        validators=[validate_content]
     )
-
-    def clean(self):
-        # Custom validation for generic type field
-        if self.field.field_type == Field.TYPE_INT:
-            if not isinstance(self.content, int):
-                raise ValidationError(_('Content must be a Int'))
-        elif self.field.field_type == Field.TYPE_FLOAT:
-            if not isinstance(self.content, float):
-                raise ValidationError(_('Content must be a float'))
-        elif self.field.field_type == Field.TYPE_URL:
-            url_validator = URLValidator()
-            try:
-                url_validator(self.content)
-            except:
-                ValidationError(_('Content must be a URL'))
-
 
     class Meta:
         unique_together = [('field', 'user')]

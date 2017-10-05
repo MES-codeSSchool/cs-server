@@ -7,6 +7,13 @@ class Field(models.Model):
     """
     Declaration of an optional field.
     """
+    TYPE_INT = TYPE_FLOAT, TYPE_STRING = range(3)
+    TYPE_CHOICES = [
+        (TYPE_INT, _('Integer')),
+        (TYPE_FLOAT, _('Float')),
+        (TYPE_STRING, _('String')),
+    ]
+
 
     name = models.CharField(
         max_length = 64,
@@ -14,8 +21,8 @@ class Field(models.Model):
             'Field name'
         ),
     )
-    field_type = models.CharField(
-        max_length = 20
+    field_type = models.SmallIntegerField(
+        choices=TYPE_CHOICES,
     )
     description = models.CharField(
         max_length = 200
@@ -23,6 +30,8 @@ class Field(models.Model):
 
     def __str__(self):
         return '%s (%s)' %(self.name, self.field_type)
+
+
 
 class FieldValue(models.Model):
     """
@@ -37,3 +46,10 @@ class FieldValue(models.Model):
 
     class Meta:
         unique_together = [('field', 'user')]
+
+    # Le a string e converte pro tipo certo.
+    def value(self):
+        if self.field.field_type == Field.TYPE_INT:
+            return int(self.content)
+        elif: self.field_type == Field.TYPE_FLOAT
+            return float(self.content)

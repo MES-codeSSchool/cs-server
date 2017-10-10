@@ -34,21 +34,10 @@ class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
                     _('%(value)s is not an Integer'),
                     params={'value': value},
                 )
-            if not isinstance(parsed_value, int):
-                raise ValidationError(
-                    _('%(value)s is not an Integer'),
-                    params={'value': value},
-                )
         elif field.field_type == models.Field.TYPE_FLOAT:
             try:
                 parsed_value = float(value)
             except:
-                raise ValidationError(
-                    _('%(value)s is not an Float'),
-                    params={'value': value},
-                )
-
-            if not isinstance(parsed_value, float):
                 raise ValidationError(
                     _('%(value)s is not an Float'),
                     params={'value': value},

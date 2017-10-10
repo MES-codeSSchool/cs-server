@@ -1,8 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
-
 from codeschool import models
-from django.core.exceptions import ValidationError
-from codeschool.lms.fields.validators import ValidateContent
 
 class Field(models.Model):
     """
@@ -43,8 +40,7 @@ class FieldValue(models.Model):
     field = models.ForeignKey('Field')
     user = models.ForeignKey('users.User')
     content = models.CharField(
-        max_length = 200,
-        validators=[ValidateContent(3)]
+        max_length = 200
     )
 
     class Meta:

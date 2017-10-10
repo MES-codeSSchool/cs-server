@@ -1,15 +1,15 @@
 import pytest
 
-from codeschool.lms.field.models import Field
+from codeschool.lms.fields.models import Field
 
 class TestField:
 
     def create_field(self):
         name = "GitHub"
-        type_field = "String"
+        field_type = 1
         description = "Insira aqui seu GitHub"
 
-        return Field(name=name, type_field=type_field,
+        return Field(name=name, field_type=field_type,
                           description=description)
 
 

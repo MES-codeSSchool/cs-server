@@ -24,7 +24,7 @@ class TestFieldValue:
 
     def setup_class(cls):
         name = "GitHub"
-        field_type = 1
+        field_type = "String"
         description = "Insira aqui seu GitHub"
 
         cls.field = Field(name=name, field_type=field_type,

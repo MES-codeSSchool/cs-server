@@ -22,6 +22,8 @@ from .api import router, import_api_modules
 from .core.config.views import index_view
 from codeschool.core.users.token import obtain_jwt_token
 
+from codeschool.lms.fields.views import FieldViewSet
+
 import_api_modules()
 
 # Basic URLS
@@ -32,6 +34,7 @@ urlpatterns = [
     url(r'^admin/', include('wagtail.wagtailadmin.urls')),
     url(r'^', include('codeschool.core.users.urls', namespace='auth')),
     url(r'^api-token-auth/', obtain_jwt_token),
+    url(r'^field_test/', FieldViewSet, name='field_form')
 ]
 
 # Optional debug views

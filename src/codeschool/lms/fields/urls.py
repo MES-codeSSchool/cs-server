@@ -4,5 +4,10 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^field_test/', views.FieldViewSet, name='field_form')
+    url(
+        r'^test/',
+        views.FieldViewSet,
+        name='field_form',
+    ),
+
 ]

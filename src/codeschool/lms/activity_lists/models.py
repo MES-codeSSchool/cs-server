@@ -66,9 +66,7 @@ class ActivityList(models.TimeStampedModel):
                 'user__first_name', 'user__last_name',
                 'activity_page__title', 'given_grade_pc')
         responses = (
-            Progress.objects
-                .filter(activity_page__in=children_id)
-                .values_list(*cols)
+            Progress.objects.filter(activity_page__in=children_id).values_list(*cols)
         )
         responses = list(responses)
 

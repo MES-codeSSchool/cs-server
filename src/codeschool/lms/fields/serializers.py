@@ -12,9 +12,8 @@ class FieldSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Field
-        fields = (
-                'name', 'field_type', 'description',
-        )
+        fields = ('name', 'field_type', 'description',)
+
 
 class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
     """
@@ -56,6 +55,4 @@ class FieldValueSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.FieldValue
-        fields = (
-                'content', 'field', 'user'
-        )
+        fields = ('content', 'field', 'user')

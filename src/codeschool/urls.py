@@ -34,7 +34,7 @@ urlpatterns = [
     url(r'^admin/', include('wagtail.wagtailadmin.urls')),
     url(r'^', include('codeschool.core.users.urls', namespace='auth')),
     url(r'^api-token-auth/', obtain_jwt_token),
-    url(r'^field_test/', FieldViewSet, name='field_form')
+    url(r'^', include('codeschool.lms.fields.urls', namespace='test')),
 ]
 
 # Optional debug views

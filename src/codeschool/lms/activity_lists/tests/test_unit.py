@@ -99,6 +99,7 @@ def test_score_table_columns(score_map, score_map2, score_table):
     assert c1 == score_map
     assert c2 == score_map2
 
+
 class TestActivityList:
 
     @pytest.mark.django_db

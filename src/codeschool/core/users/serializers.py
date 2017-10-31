@@ -14,16 +14,15 @@ class ProfileSerializer(serializers.ModelSerializer):
     # TODO: nullify fields that user is not allowed to see? (this may be
     # expensive in querysets)
 
-
     class Meta:
         model = models.Profile
         fields = (
-        'gender','phone','date_of_birth'
-        ,'website','about_me', 'visibility', 'user'
+        'gender', 'phone', 'date_of_birth'
+        ,'website', 'about_me', 'visibility', 'user'
         )
         read_only = {'read_only': True}
         extra_kwargs = {
-                'user':read_only
+                'user': read_only
         }
 
 
@@ -37,7 +36,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.User
-        fields = ('alias', 'role','email', 'name', 'school_id', 'password', 'password_confirmation')
+        fields = ('alias', 'role', 'email', 'name', 'school_id', 'password', 'password_confirmation')
         write_only = {'write_only': True}
         extra_kwargs = {
                 'email': write_only,
@@ -45,8 +44,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
                 'name': write_only,
                 'school_id': write_only,
                 'password': write_only,
-                'password_confirmation': write_only
-	}
+                'password_confirmation': write_only}
+
 
     def get_role(self, obj):
         if(obj.role == models.User.ROLE_STUDENT):
@@ -57,7 +56,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             return 'staff'
         elif(obj.role == models.User.ROLE_ADMIN):
             return 'admin'
-
 
     def create(self, validated_data):
         password_confirmation = validated_data.pop('password_confirmation', None)
@@ -75,6 +73,7 @@ class FullUserSerializer(serializers.ModelSerializer):
 
     # TODO: extra_emails
     # TODO: create hyperlinks or make it role-based access?
+
 
     class Meta:
         model = models.User

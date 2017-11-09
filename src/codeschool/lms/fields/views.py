@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
 from django.shortcuts import render
-from .forms import FieldForm
+from .forms import FieldValueForm
 from . import serializers
 from .models import Field, FieldValue
 
@@ -28,6 +28,6 @@ def get_field(request):
     """
     Function of Field Forms
     """
-    form = FieldForm(request.POST)
+    form = FieldValueForm(request.POST)
     response = render(request, 'template/field_template.html', {'form': form})
     return response

@@ -1,5 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from codeschool import models
+from django.forms import ModelForm
+from functools import lru_cache
 
 
 class Field(models.Model):
@@ -56,3 +58,27 @@ class FieldValue(models.Model):
             return self.content
         elif self.field.field_type == Field.TYPE_URL:
             return self.content
+
+
+@lru_cache(256)
+def get_form_class(fields=None):
+    """
+    Return a form class that implements the list fields
+
+    Usage:
+        >>> get_form_class(Fields.objects.all())
+    """
+    if fields is None:
+        fields = Field.objects.all()
+
+    namespace = {f.name: get_form_field(f) for f in fields}
+    return type('FieldForm', (Form,), namespace)
+
+
+# def get_form_for_user(user, fields=None):
+#     form_class = get_form_class(fields)
+
+
+def get_form_field(field):
+    if field.type == "char":
+        return forms.CharfField()

@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     url(
         r'^test/',
-        views.FieldViewSet,
+        views.test,
         name='field_form',
     ),
 

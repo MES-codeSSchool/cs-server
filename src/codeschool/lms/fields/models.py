@@ -49,6 +49,7 @@ class FieldValue(models.Model):
         unique_together = [('field', 'user')]
 
     # Le a string e converte pro tipo certo.
+    @property
     def value(self):
         if self.field.field_type == Field.TYPE_INT:
             return int(self.content)
@@ -75,9 +76,12 @@ def get_form_class(fields=None):
     return type('FieldForm', (Form,), namespace)
 
 
-# def get_form_for_user(user, fields=None):
-#     form_class = get_form_class(fields)
-
+def get_form_for_user(user, fields=None, field_values=None):
+    form_class = get_form_class(fields)
+    if field_values is None:
+        field_values = FieldValue.objects.filter(user=user)
+    form_data = {...}
+    return form_class(form_data)
 
 def get_form_field(field):
     if field.type == "char":

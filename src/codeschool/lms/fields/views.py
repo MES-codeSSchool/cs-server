@@ -34,4 +34,4 @@ def get_field(request):
 
 def test(request):
     form = FieldForm()
-    return render(request, 'codeschool/field_template.html', {'form':form})
+    return render(request, '/home/arthur/Documents/mes/cs-server/src/codeschool/lms/fields/template/field_template.html')

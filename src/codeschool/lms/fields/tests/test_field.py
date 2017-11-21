@@ -4,34 +4,48 @@ from codeschool.lms.fields.models import Field, FieldValue
 from codeschool.core.users.factories import (FullUserFactory, UserFactory, make_students)
 
 
+@pytest.fixture
+def char_field():
+    name = "github"
+    field_type = 1
+    description = "Insira aqui seu GitHub"
+    return Field(name=name, field_type=field_type, description=description)
+
+@pytest.fixture
+def db_char_field(char_field):
+    char_field.save()
+    return char_field
+
+@pytest.fixture
+def form_class(char_field, int_field):
+    return get_form_class([char_field, int_field])
+
+
+def test_form_validates(form_class):
+    form = form_class({'github': 'https://github.com/someone', 'age': '42'})
+    assert form.is_valid()
+
+    form = form_class({'github': 'https://github.com/someone', 'age': '0'})
+    assert form.is_valid()
+
+
+def test_form_do_not_validates(form_class):
+    form = form_class({'github': 'https://github.com/someone', 'age': 'bad'})
+    assert form.is_valid()
+
+    form = form_class({'github': 'https://github.com/someone', 'age': ''})
+    assert form.is_valid()
+
+
+
 class TestField:
-
-    def create_field(self):
-        name = "GitHub"
-        field_type = 1
-        description = "Insira aqui seu GitHub"
-
-        return Field(name=name, field_type=field_type, description=description)
-
-    def test_create_field(self):
-        field = self.create_field()
+    def test_create_correct_form_field(self, field):
+        field = get_form_field(field)
+        assert type(field) is form.CharField
 
 
 class TestFieldValue:
-
-    def setup_class(cls):
-        name = "GitHub"
-        field_type = 1
-        description = "Insira aqui seu GitHub"
-
-        cls.field = Field(name=name, field_type=field_type,
-                          description=description)
-
-        students = make_students(1, commit=False)
-        cls.student = students[0]
-        cls.content = "0123456"
-
-    def create_field_value(self):
+    def create_field_value(self, user):
         field_value = self.field_value()
 
         assert self.content == field_value.content

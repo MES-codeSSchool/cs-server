@@ -31,7 +31,3 @@ def get_field(request):
     form = FieldForm(request.POST)
     response = render(request, 'template/field_template.html', {'form': form})
     return response
-
-def test(request):
-    form = FieldForm()
-    return render(request, '/home/arthur/Documents/mes/cs-server/src/codeschool/lms/fields/template/field_template.html')

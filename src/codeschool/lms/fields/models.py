@@ -72,7 +72,7 @@ def get_form_class(fields=None):
     if fields is None:
         fields = Field.objects.all()
 
-    namespace = {f.name: get_form_field(f) for f in fields}
+    namespace = {field.name: get_form_field(field) for field in fields}
     return type('FieldForm', (Form,), namespace)
 
 

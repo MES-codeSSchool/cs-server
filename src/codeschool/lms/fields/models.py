@@ -87,5 +87,9 @@ def get_form_for_user(user, fields=None, field_values=None):
 def get_form_field(field):
     if field.type == TYPE_INT:
         return forms.IntegerField()
-    # elif field.type == TYPE_FLOAT:
-        # return forms.
+    elif field.type == TYPE_FLOAT:
+        return forms.FloatField()
+    elif field.type == TYPE_STRING:
+        return forms.CharField()
+    elif field.type == TYPE_URL:
+        return forms.CharField()

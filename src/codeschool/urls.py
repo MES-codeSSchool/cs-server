@@ -22,6 +22,10 @@ from .api import router, import_api_modules
 from .core.config.views import index_view
 from codeschool.core.users.token import obtain_jwt_token
 
+from codeschool.lms.fields.views import FieldViewSet
+from codeschool.lms.fields import views
+
+
 import_api_modules()
 
 # Basic URLS

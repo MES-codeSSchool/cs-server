@@ -83,6 +83,9 @@ def get_form_for_user(user, fields=None, field_values=None):
     form_data = {...}
     return form_class(form_data)
 
+
 def get_form_field(field):
-    if field.type == "char":
-        return forms.CharfField()
+    if field.type == TYPE_INT:
+        return forms.IntegerField()
+    # elif field.type == TYPE_FLOAT:
+        # return forms.

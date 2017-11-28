@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 from codeschool import models
-from django.forms import ModelForm
+from django import forms
 from functools import lru_cache
 
 
@@ -73,7 +73,7 @@ def get_form_class(fields=None):
         fields = Field.objects.all()
 
     namespace = {field.name: get_form_field(field) for field in fields}
-    return type('FieldForm', (Form,), namespace)
+    return type('FieldForm', (forms.Form,), namespace)
 
 
 def get_form_for_user(user, fields=None, field_values=None):
@@ -85,11 +85,11 @@ def get_form_for_user(user, fields=None, field_values=None):
 
 
 def get_form_field(field):
-    if field.type == TYPE_INT:
+    if field.field_type == field.TYPE_INT:
         return forms.IntegerField()
-    elif field.type == TYPE_FLOAT:
+    elif field.field_type == field.TYPE_FLOAT:
         return forms.FloatField()
-    elif field.type == TYPE_STRING:
+    elif field.field_type == field.TYPE_STRING:
         return forms.CharField()
-    elif field.type == TYPE_URL:
+    elif field.field_type == field.TYPE_URL:
         return forms.CharField()

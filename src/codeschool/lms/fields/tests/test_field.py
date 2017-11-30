@@ -11,6 +11,12 @@ def char_field():
     description = "Insira aqui seu GitHub"
     return Field(id=0, name=name, field_type=field_type, description=description)
 
+@pytest.fixture
+def int_field():
+    name = "age"
+    field_type = Field.TYPE_INT
+    description = "Insira aqui sua idade"
+    return Field(id=1, name=name, field_type=field_type, description=description)
 
 @pytest.fixture
 def db_char_field(char_field):
@@ -19,8 +25,8 @@ def db_char_field(char_field):
 
 
 @pytest.fixture
-def form_class(char_field):
-    return get_form_class((char_field,))
+def form_class(char_field, int_field):
+    return get_form_class((char_field, int_field))
 
 
 def test_form_validates(form_class):
@@ -32,11 +38,11 @@ def test_form_validates(form_class):
 
 
 def test_form_do_not_validates(form_class):
-    form = form_class({'github': 'https://github.com/someone', 'age': 'bad'})
-    assert form.is_valid()
+    form = form_class({'github': 'https://github.com/someone', 'age': ' '})
+    assert not form.is_valid()
 
-    form = form_class({'github': 'https://github.com/someone', 'age': ''})
-    assert form.is_valid()
+    form = form_class({'github': 'https://github.com/someone', 'age': 'bad'})
+    assert not form.is_valid()
 
 # Finalize test.
 # class TestField:

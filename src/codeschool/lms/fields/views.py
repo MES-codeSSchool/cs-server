@@ -21,12 +21,3 @@ class FieldValueViewSet(viewsets.ModelViewSet):
 
     queryset = FieldValue.objects.all()
     serializer_class = serializers.FieldValueSerializer
-
-
-def get_field(request):
-    """
-    Function of Field Forms
-    """
-    form = FieldForm(request.POST)
-    response = render(request, 'template/field_template.html', {'form': form})
-    return response

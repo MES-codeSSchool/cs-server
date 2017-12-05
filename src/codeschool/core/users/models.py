@@ -17,7 +17,6 @@ class UserManager(BaseUserManager):
     """
     A manager that mimics the interface of Django's default User manager.
     """
-
     def create_user(self, *args, username=None, commit=True, **kwargs):
         if username is not None:
             kwargs['alias'] = username
@@ -278,6 +277,7 @@ class Password(models.Model):
         validators=[MinValueValidator(0)],
 
     )
+
 
 def register_password(password):
     try:

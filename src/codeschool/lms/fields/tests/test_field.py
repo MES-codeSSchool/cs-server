@@ -29,6 +29,11 @@ def form_class(char_field, int_field):
     return get_form_class((char_field, int_field))
 
 
+def test_api_module_imports_without_errors():
+    import codeschool.lms.fields.api
+    import codeschool.lms.fields.serializers
+    import codeschool.lms.fields.views
+
 def test_form_validates(form_class):
     form = form_class({'github': 'https://github.com/someone', 'age': '42'})
     assert form.is_valid()
